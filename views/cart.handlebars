@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row p-5">
+    {{#each carro.carts}}
+    <div class="col-md-4">
+      <div class="p-4">
+        <div class="card">
+          <img src="{{this.product.image}}" alt="" class="card-img-top" />
+          <div class="card-body">
+            <h3 class="card-title">{{this.product.name}}</h3>
+            <p class="card-text">{{this.product.category}}</p>
+            <p class="card-text">{{this.product.price}}</p>
+            <p class="card-text">hay:{{this.count}} productos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<script src="/js/cart.js"></script>

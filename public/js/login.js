@@ -21,7 +21,7 @@ formLogin.addEventListener("submit", (e) => {
                 JSON.stringify(data.email)
             );
           // Redireccionar al usuario a la página de inicio de sesión
-          window.location.href = "/home";
+          window.location.href = "/api/";
         } else {
           console.error("Error al iniciar el usuario");
         }

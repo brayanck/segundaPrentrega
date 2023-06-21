@@ -1,16 +1,5 @@
 const mongoose = require('mongoose');
 
-const CartItemSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-    required: true
-  },
-  count: {
-    type: Number,
-    required: true
-  }
-});
 
 const CartsSchema = new mongoose.Schema({
   user: {
@@ -19,21 +8,27 @@ const CartsSchema = new mongoose.Schema({
     required: true
   },
     carts: {
-    type: [CartItemSchema],
+    type: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product',
+          required: true
+        },
+        count: {
+          type: Number,
+          required: true
+        }
+      }
+    ],
     default: []
-  //   validate: {
-  //     validator: function (carts) {
-  //       return carts.length > 0 || this.carts.length === 0;
-  //     },
-  //     message: 'El campo "carts" debe contener al menos un elemento o puede estar vacío.'
-  //   }
   }
 
 });
 
-CartsSchema.pre('find', function (next) {
+CartsSchema.pre('findOne', function (next) {
   this.populate('user'); 
-  this.populate('carts.id');
+  this.populate('carts.product');
   next();
 });
 
